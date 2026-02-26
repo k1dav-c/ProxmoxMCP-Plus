@@ -25,7 +25,6 @@ RUN uv venv && \
 EXPOSE 8811
 
 # Set environment variables
-ENV PROXMOX_MCP_CONFIG="/app/proxmox-config/config.json"
 ENV API_HOST="0.0.0.0"
 ENV API_PORT="8811"
 

@@ -3,23 +3,19 @@ version: '3.8'
 services:
   proxmox-mcp-api:
     build: .
-    ports:
-      - "8811:8811"
-    volumes:
-      - ./proxmox-config:/app/proxmox-config:ro
     environment:
-      - PROXMOX_MCP_CONFIG=/app/proxmox-config/config.json
       - API_HOST=0.0.0.0
       - API_PORT=8811
+      - PROXMOX_HOST=${PROXMOX_HOST}
+      - PROXMOX_PORT=${PROXMOX_PORT:-8006}
+      - PROXMOX_VERIFY_SSL=${PROXMOX_VERIFY_SSL:-false}
+      - PROXMOX_SERVICE=${PROXMOX_SERVICE:-PVE}
+      - PROXMOX_USER=${PROXMOX_USER}
+      - PROXMOX_TOKEN_NAME=${PROXMOX_TOKEN_NAME}
+      - PROXMOX_TOKEN_VALUE=${PROXMOX_TOKEN_VALUE}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8811/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-    networks:
-      - proxmox-network
-
-networks:
-  proxmox-network:
-    driver: bridge 
