@@ -72,7 +72,9 @@ def _load_from_env() -> Config:
             level=os.getenv("LOG_LEVEL", "INFO"),
             file=os.getenv("LOG_FILE"),
         ),
-        mcp=MCPConfig(),
+        mcp=MCPConfig(
+            transport="SSE",
+        ),
     )
 
 
