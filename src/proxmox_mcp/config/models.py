@@ -73,7 +73,7 @@ class MCPConfig(BaseModel):
 
     Defines transport-specific settings for running the MCP server.
     """
-    host: str = "127.0.0.1"
+    host: str = "0.0.0.0"
     port: int = 8000
     transport: Literal["STDIO", "SSE", "STREAMABLE"] = "STDIO"
 
